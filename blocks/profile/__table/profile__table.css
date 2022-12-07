@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     column-gap: 30px;
 }
 
@@ -10,5 +9,11 @@
     .profile__table {
         width: 100%;
         gap: 27px;
+    }
+}
+
+@media screen and (max-width: 539px) {
+    .profile__table {
+        flex-wrap: wrap;
     }
 }
