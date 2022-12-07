@@ -5,3 +5,8 @@
     border: none;
     cursor: pointer;
 }
+
+.popup__button_save:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 0.5s linear;
+}
