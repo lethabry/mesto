@@ -17,3 +17,9 @@
         flex-wrap: wrap;
     }
 }
+
+@media screen and (max-width: 436px) {
+    .profile__table {
+        flex-direction: column;
+    }
+}

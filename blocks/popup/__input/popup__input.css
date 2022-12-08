@@ -9,6 +9,6 @@
     width: 100%;
 }
 
-.popup__input:focus{
+.popup__input:focus {
     outline: none;
 }

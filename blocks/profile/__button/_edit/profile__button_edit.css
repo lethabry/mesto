@@ -6,13 +6,13 @@
 
 @media screen and (max-width: 735px) {
     .profile__button_edit {
-        right: 0;
         top: 8px;
     }
 }
 
-@media screen and (max-width: 539px) {
+@media screen and (max-width: 576px) {
     .profile__button_edit {
+        right: -31px;
         width: 18px;
     }
 }

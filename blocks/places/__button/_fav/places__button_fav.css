@@ -2,11 +2,11 @@
     max-height: 19px;
 }
 
-.places__button_fav:hover{
+.places__button_fav:hover {
     opacity: 0.5;
     transition: opacity 0.5s linear;
 }
 
-.places__button_fav_active{
+.places__button_fav_active {
     background-color: #000;
 }
