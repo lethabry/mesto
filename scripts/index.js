@@ -7,7 +7,6 @@ const formProfile = popup.querySelector('.popup__form');
 const nameInput = formProfile.querySelector('.popup__input_type_name');
 const activityInput = formProfile.querySelector('.popup__input_type_activity');
 
-
 openPopupButton.addEventListener('click', function () {
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
