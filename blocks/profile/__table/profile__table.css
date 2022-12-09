@@ -1,25 +1,20 @@
 .profile__table {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 735px) {
-    .profile__table {
-        width: 100%;
-        gap: 27px;
-    }
-}
-
-@media screen and (max-width: 539px) {
-    .profile__table {
-        flex-wrap: wrap;
-    }
+  .profile__table {
+    gap: 27px;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 436px) {
-    .profile__table {
-        flex-direction: column;
-    }
+  .profile__table {
+    flex-direction: column;
+  }
 }

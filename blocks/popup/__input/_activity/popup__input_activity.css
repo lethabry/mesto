@@ -1,9 +1,0 @@
-.popup__input_activity {
-    margin-bottom: 48px;
-}
-
-@media screen and (max-width: 385px) {
-    .popup__input_activity {
-        margin-bottom: 44px;
-    }
-}
