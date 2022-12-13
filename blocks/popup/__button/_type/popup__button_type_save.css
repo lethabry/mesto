@@ -1,6 +1,7 @@
 .popup__button_type_save {
   min-height: 50px;
   background-color: #000;
+  background-repeat: no-repeat;
   color: #FFF;
   border: none;
   cursor: pointer;

@@ -1,6 +1,7 @@
 .profile__button_type_edit {
   background: url(../../../../images/Edit_Button.png) #000;
   background-size: cover;
+  background-repeat: no-repeat;
   width: 24px;
   height: 24px;
   border: none;
