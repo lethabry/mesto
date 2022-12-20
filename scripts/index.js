@@ -27,3 +27,42 @@ function changeText(evt) {
 }
 
 formProfile.addEventListener('submit', changeText);
+
+// Задание 1. При загрузке сайта js отображает картинки из массива в секцию places
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+const cardTemplate = document.querySelector('#cards-template').content;
+const cardsList = document.querySelector('.places__cards');
+
+initialCards.forEach(function (element){
+  const cardElement = cardTemplate.querySelector('.places__card').cloneNode(true);
+  cardElement.querySelector('.places__image').src = element.link;
+  cardElement.querySelector('.places__title').textContent = element.name;
+  cardsList.prepend(cardElement);
+});
