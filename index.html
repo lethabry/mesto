@@ -34,50 +34,6 @@
     </section>
     <section class="places" aria-label="Места">
       <ul class="places__cards">
-        <li class="places__card">
-          <img src="./images/karachaevsk.png" alt="Храм в Карачаевске" class="places__image">
-          <div class="places__name">
-            <!-- Исправлены теги p на h2 -->
-            <h2 class="places__title">Карачаевск</h2>
-            <!-- Исправлен тег input на button -->
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
-        <li class="places__card">
-          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="places__image">
-          <div class="places__name">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
-        <li class="places__card">
-          <img src="./images/dombay.png" alt="Гора Домбай" class="places__image">
-          <div class="places__name">
-            <h2 class="places__title">Домбай</h2>
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
-        <li class="places__card">
-          <img src="./images/elbrus.png" alt="Гора Эльбрус" class="places__image">
-          <div class="places__name">
-            <h2 class="places__title">Гора Эльбрус</h2>
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
-        <li class="places__card">
-          <img src="./images/dombay.png" alt="Гора Домбай" class="places__image">
-          <div class="places__name">
-            <h2 class="places__title">Домбай</h2>
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
-        <li class="places__card">
-          <img src="./images/karachaevsk.png" alt="Храм в Карачаевске" class="places__image">
-          <div class="places__name">
-            <h2 class="places__title">Карачаево-Черкессия</h2>
-            <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -85,7 +41,7 @@
     <p class="footer__copyrigth">&copy; 2022 Mesto Russia</p>
   </footer>
   <!-- Изменен тег section на div -->
-  <div class="popup">
+  <div class="popup popup-edit">
     <div class="popup__block">
       <h2 class="popup__title">Редактировать профиль</h2>
       <!-- Добавлен тег fotm с атрибутами name и method -->
@@ -102,15 +58,37 @@
         aria-label="Кнопка закрытия окна"></button>
     </div>
   </div>
+  <div class="popup popup_type_add">
+    <div class="popup__block">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="change_data" method="post">
+        <input type="text" name="title" placeholder="Название" class="popup__input popup__input_type_name">
+        <input type="text" name="link" placeholder="Ссылка на картинку" class="popup__input popup__input_type_activity">
+        <button type="submit" class="popup__button popup__button_type_save">Создать</button>
+      </form>
+      <button type="button" class="hover popup__button popup__button_type_close"
+        aria-label="Кнопка закрытия окна"></button>
+    </div>
+  </div>
+  <div class="popup popup_type_card">
+    <div class="popup__block-image">
+      <img src="#" class="popup__image" alt="#">
+      <h2 class="popup__description"></h2>
+      <button type="button" class="hover popup__button popup__button_type_close"
+        aria-label="Кнопка закрытия окна"></button>
+    </div>
+  </div>
   <template id="cards-template">
-      <li class="places__card">
-        <img src="" class="places__image">
-        <div class="places__name">
-          <h2 class="places__title"></h2>
-          <button type="button" class="places__button" aria-label="Кнопка лайка"></button>
-        </div>
-      </li>
+    <li class="places__card">
+      <img src="#" class="places__image" alt="#">
+      <button type="button" class="places__button places__button_type_trash"></button>
+      <div class="places__name">
+        <h2 class="places__title"></h2>
+        <button type="button" class="places__button places__button_type_like" aria-label="Кнопка лайка"></button>
+      </div>
+    </li>
   </template>
   <script src="./scripts/index.js"></script>
 </body>
+
 </html>
