@@ -23,27 +23,27 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalText = popupImage.querySelector('.popup__description');
 const buttonImageClose = popupImage.querySelector('.popup__button_type_close');
 
-function openPopupEditProfile() {
-  popupEditProfile.classList.add('popup_active');
+function openModalWindow(modalWindow){
+  modalWindow.classList.add('popup_active');
 }
 
-function closePopupEditProfile() {
-  popupEditProfile.classList.remove('popup_active');
+function closeModalWindow(modalWindow){
+  modalWindow.classList.remove('popup_active');
 }
 
-buttonEditProfileOpen.addEventListener('click', function () {
+buttonEditProfileOpen.addEventListener('click', () => {
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
-  openPopupEditProfile();
+  openModalWindow(popupEditProfile);
 });
 
-buttonEditProfileClose.addEventListener('click', closePopupEditProfile);
+buttonEditProfileClose.addEventListener('click', () => closeModalWindow(popupEditProfile));
 
 function changeText(evt) {
   evt.preventDefault();
   formName.textContent = nameInput.value;
   formActivity.textContent = activityInput.value;
-  closePopupEditProfile();
+  closeModalWindow(popupEditProfile);
 }
 
 formProfile.addEventListener('submit', changeText);
@@ -62,7 +62,7 @@ function openPopupImage(evt) {
   modalImage.src = element.querySelector('.places__image').src;
   modalImage.alt = element.querySelector('.places__title').textContent;
   modalText.textContent = element.querySelector('.places__title').textContent;
-  popupImage.classList.toggle('popup_active');
+  openModalWindow(popupImage);
 }
 
 function renderCard(link, name) {
@@ -85,27 +85,15 @@ function addCard(evt) {
   evt.preventDefault();
   const cardElement = renderCard(linkInput.value, titleInput.value);
   cardsList.prepend(cardElement);
-  closePopupAddCard();
+  closeModalWindow(popupAddCard);
 }
 
 formCard.addEventListener('submit', addCard);
 
 initialCards.forEach(showCards);
 
-function closePopupImage() {
-  popupImage.classList.remove('popup_active');
-}
+buttonImageClose.addEventListener('click', () => closeModalWindow(popupImage));
 
-buttonImageClose.addEventListener('click', closePopupImage);
+buttonAddCardOpen.addEventListener('click', () => openModalWindow(popupAddCard));
 
-function openPopupAddCard() {
-  popupAddCard.classList.add('popup_active');
-}
-
-function closePopupAddCard() {
-  popupAddCard.classList.remove('popup_active');
-}
-
-buttonAddCardOpen.addEventListener('click', openPopupAddCard);
-
-buttonAddCardClose.addEventListener('click', closePopupAddCard);
+buttonAddCardClose.addEventListener('click', () => closeModalWindow(popupAddCard));
