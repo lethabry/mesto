@@ -23,21 +23,29 @@ const modalImage = popupImage.querySelector('.popup__image');
 const modalText = popupImage.querySelector('.popup__description');
 const buttonImageClose = popupImage.querySelector('.popup__button_type_close');
 
-function openModalWindow(modalWindow){
+function openModalWindow(modalWindow) {
+  document.addEventListener('keydown', closeOnKeydownEscape);
+  modalWindow.addEventListener('click', closeOnClickOverlay);
   modalWindow.classList.add('popup_active');
 }
 
-function closeModalWindow(modalWindow){
+function closeModalWindow(modalWindow) {
+  document.removeEventListener('keydown', closeOnKeydownEscape);
+  modalWindow.removeEventListener('click', closeOnClickOverlay);
   modalWindow.classList.remove('popup_active');
 }
 
 buttonEditProfileOpen.addEventListener('click', () => {
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
+  enableValidation(popupEditProfile, selectorClass);
   openModalWindow(popupEditProfile);
 });
 
-buttonEditProfileClose.addEventListener('click', () => closeModalWindow(popupEditProfile));
+buttonEditProfileClose.addEventListener('click', () => {
+  cleanInputs(popupEditProfile, selectorClass);
+  closeModalWindow(popupEditProfile);
+})
 
 function changeText(evt) {
   evt.preventDefault();
@@ -94,6 +102,26 @@ initialCards.forEach(showCards);
 
 buttonImageClose.addEventListener('click', () => closeModalWindow(popupImage));
 
-buttonAddCardOpen.addEventListener('click', () => openModalWindow(popupAddCard));
+buttonAddCardOpen.addEventListener('click', () => {
+  enableValidation(popupAddCard, selectorClass);
+  openModalWindow(popupAddCard);
+});
 
-buttonAddCardClose.addEventListener('click', () => closeModalWindow(popupAddCard));
+buttonAddCardClose.addEventListener('click', () => {
+  closeModalWindow(popupAddCard);
+  cleanInputs(popupAddCard, selectorClass);
+});
+
+const closeOnClickOverlay = evt => {
+  const modalWindow = document.querySelector('.popup_active');
+  if (evt.target.classList.contains('popup')) {
+    closeModalWindow(modalWindow);
+  }
+}
+
+const closeOnKeydownEscape = evt => {
+  const modalWindow = document.querySelector('.popup_active');
+  if (evt.key === 'Escape') {
+    closeModalWindow(modalWindow);
+  };
+};

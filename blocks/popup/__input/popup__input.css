@@ -7,20 +7,7 @@
   line-height: 17px;
   min-height: 33px;
   width: 100%;
-}
-
-.popup__input:first-of-type {
-  margin-bottom: 22px;
-}
-
-.popup__input:last-of-type {
-  margin-bottom: 48px;
-}
-
-@media screen and (max-width: 385px) {
-  .popup__input:last-of-type {
-    margin-bottom: 44px;
-  }
+  margin-bottom: 5px;
 }
 
 .popup__input:focus {
