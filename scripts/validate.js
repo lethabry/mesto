@@ -66,12 +66,10 @@ const enableValidation = (formElement, { formSelector, ...rest }) => {
   setEventListeners(formElement, rest);
 };
 
-const cleanInputs = (formElement, { inputSelector, submitButtonSelector }) => {
+const cleanInputs = (formElement, { inputSelector }) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   inputList.forEach(inputElement => {
     hideError(formElement, inputElement, selectorClass);
     inputElement.value = '';
   });
-  const buttonElement = formElement.querySelector(submitButtonSelector);
-  switchButtonState(inputList, buttonElement, selectorClass);
 };
