@@ -70,8 +70,8 @@ const cleanInputs = (formElement, { inputSelector, submitButtonSelector }) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   inputList.forEach(inputElement => {
     hideError(formElement, inputElement, selectorClass);
+    inputElement.value = '';
   });
   const buttonElement = formElement.querySelector(submitButtonSelector);
   switchButtonState(inputList, buttonElement, selectorClass);
-  formElement.reset;
 };

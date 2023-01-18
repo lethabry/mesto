@@ -32,6 +32,7 @@ function openModalWindow(modalWindow) {
 function closeModalWindow(modalWindow) {
   document.removeEventListener('keydown', closeOnKeydownEscape);
   modalWindow.removeEventListener('click', closeOnClickOverlay);
+  cleanInputs(modalWindow, selectorClass);
   modalWindow.classList.remove('popup_active');
 }
 
@@ -43,7 +44,6 @@ buttonEditProfileOpen.addEventListener('click', () => {
 });
 
 buttonEditProfileClose.addEventListener('click', () => {
-  cleanInputs(popupEditProfile, selectorClass);
   closeModalWindow(popupEditProfile);
 })
 
@@ -109,7 +109,6 @@ buttonAddCardOpen.addEventListener('click', () => {
 
 buttonAddCardClose.addEventListener('click', () => {
   closeModalWindow(popupAddCard);
-  cleanInputs(popupAddCard, selectorClass);
 });
 
 const closeOnClickOverlay = evt => {
