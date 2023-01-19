@@ -62,8 +62,11 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector })
   });
 };
 
-const enableValidation = (formElement, { formSelector, ...rest }) => {
-  setEventListeners(formElement, rest);
+const enableValidation = ({ formSelector, ...rest }) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach(formElement => {
+    setEventListeners(formElement, rest);
+  })
 };
 
 const cleanInputs = (formElement, { inputSelector }) => {
@@ -73,3 +76,5 @@ const cleanInputs = (formElement, { inputSelector }) => {
     inputElement.value = '';
   });
 };
+
+enableValidation(selectorClass);

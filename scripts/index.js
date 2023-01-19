@@ -32,14 +32,14 @@ function openModalWindow(modalWindow) {
 function closeModalWindow(modalWindow) {
   document.removeEventListener('keydown', closeOnKeydownEscape);
   modalWindow.removeEventListener('click', closeOnClickOverlay);
-  cleanInputs(modalWindow, selectorClass);
   modalWindow.classList.remove('popup_active');
 }
 
 buttonEditProfileOpen.addEventListener('click', () => {
+  cleanInputs(popupEditProfile, selectorClass);
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
-  enableValidation(popupEditProfile, selectorClass);
+  setEventListeners(popupEditProfile, selectorClass);
   openModalWindow(popupEditProfile);
 });
 
@@ -75,12 +75,13 @@ function openPopupImage(evt) {
 
 function renderCard(link, name) {
   const cardElement = cardTemplate.querySelector('.places__card').cloneNode(true);
-  cardElement.querySelector('.places__image').src = link;
-  cardElement.querySelector('.places__image').alt = name;
+  const cardImage = cardElement.querySelector('.places__image');
+  cardImage.src = link;
+  cardImage.alt = name;
   cardElement.querySelector('.places__title').textContent = name;
   cardElement.querySelector('.places__button_type_like').addEventListener('click', likeCard);
   cardElement.querySelector('.places__button_type_trash').addEventListener('click', deleteCard);
-  cardElement.querySelector('.places__image').addEventListener('click', openPopupImage);
+  cardImage.addEventListener('click', openPopupImage);
   return cardElement;
 }
 
@@ -103,7 +104,7 @@ initialCards.forEach(showCards);
 buttonImageClose.addEventListener('click', () => closeModalWindow(popupImage));
 
 buttonAddCardOpen.addEventListener('click', () => {
-  enableValidation(popupAddCard, selectorClass);
+  cleanInputs(popupAddCard, selectorClass);
   openModalWindow(popupAddCard);
 });
 
@@ -112,15 +113,15 @@ buttonAddCardClose.addEventListener('click', () => {
 });
 
 const closeOnClickOverlay = evt => {
-  const modalWindow = document.querySelector('.popup_active');
   if (evt.target.classList.contains('popup')) {
+    const modalWindow = document.querySelector('.popup_active');
     closeModalWindow(modalWindow);
   }
 }
 
 const closeOnKeydownEscape = evt => {
-  const modalWindow = document.querySelector('.popup_active');
   if (evt.key === 'Escape') {
+    const modalWindow = document.querySelector('.popup_active');
     closeModalWindow(modalWindow);
   };
 };
