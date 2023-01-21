@@ -36,10 +36,10 @@ function closeModalWindow(modalWindow) {
 }
 
 buttonEditProfileOpen.addEventListener('click', () => {
-  cleanInputs(popupEditProfile, selectorClass);
+  cleanInputs(popupEditProfile, validationConfig);
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
-  setEventListeners(popupEditProfile, selectorClass);
+  enableSubmitButton(popupEditProfile, validationConfig);
   openModalWindow(popupEditProfile);
 });
 
@@ -104,7 +104,7 @@ initialCards.forEach(showCards);
 buttonImageClose.addEventListener('click', () => closeModalWindow(popupImage));
 
 buttonAddCardOpen.addEventListener('click', () => {
-  cleanInputs(popupAddCard, selectorClass);
+  cleanInputs(popupAddCard, validationConfig);
   openModalWindow(popupAddCard);
 });
 

@@ -1,4 +1,4 @@
-const selectorClass = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button_type_save',
@@ -23,9 +23,9 @@ const hideError = (formElement, inputElement, { inputErrorClass, errorClass }) =
 
 const checkValidation = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
-    showError(formElement, inputElement, inputElement.validationMessage, selectorClass);
+    showError(formElement, inputElement, inputElement.validationMessage, validationConfig);
   } else {
-    hideError(formElement, inputElement, selectorClass);
+    hideError(formElement, inputElement, validationConfig);
   }
 };
 
@@ -53,11 +53,11 @@ const switchButtonState = (inputList, buttonElement, { inactiveButtonClass }) =>
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector }) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
-  switchButtonState(inputList, buttonElement, selectorClass);
+  switchButtonState(inputList, buttonElement, validationConfig);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      checkValidation(formElement, inputElement, selectorClass);
-      switchButtonState(inputList, buttonElement, selectorClass);
+      checkValidation(formElement, inputElement, validationConfig);
+      switchButtonState(inputList, buttonElement, validationConfig);
     });
   });
 };
@@ -72,9 +72,15 @@ const enableValidation = ({ formSelector, ...rest }) => {
 const cleanInputs = (formElement, { inputSelector }) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   inputList.forEach(inputElement => {
-    hideError(formElement, inputElement, selectorClass);
+    hideError(formElement, inputElement, validationConfig);
     inputElement.value = '';
   });
 };
 
-enableValidation(selectorClass);
+const enableSubmitButton = (formElement, { inputSelector, submitButtonSelector }) => {
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+  const buttonElement = formElement.querySelector(submitButtonSelector);
+  switchButtonState(inputList, buttonElement, validationConfig);
+}
+
+enableValidation(validationConfig);
