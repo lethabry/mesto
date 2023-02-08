@@ -1,3 +1,8 @@
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { validationConfig, initialCards } from "./constants.js";
+
+// Profile
 const buttonEditProfileOpen = document.querySelector('.profile__button_type_edit');
 const popupEditProfile = document.querySelector('.popup_type_edit');
 const buttonEditProfileClose = popupEditProfile.querySelector('.popup__button_type_close');
@@ -7,7 +12,6 @@ const formProfile = popupEditProfile.querySelector('.popup__form');
 const nameInput = formProfile.querySelector('.popup__input_type_name');
 const activityInput = formProfile.querySelector('.popup__input_type_activity');
 // Show cards
-const cardTemplate = document.querySelector('#cards-template').content;
 const cardsList = document.querySelector('.places__cards');
 // Open popupAdd
 const buttonAddCardOpen = document.querySelector('.profile__button_type_add');
@@ -22,6 +26,12 @@ const popupImage = document.querySelector('.popup_type_card');
 const modalImage = popupImage.querySelector('.popup__image');
 const modalText = popupImage.querySelector('.popup__description');
 const buttonImageClose = popupImage.querySelector('.popup__button_type_close');
+// FormValidate
+const profileFormValidate = new FormValidator(formProfile, validationConfig);
+const cardFormValidate = new FormValidator(formCard, validationConfig);
+
+profileFormValidate.enableValidation();
+cardFormValidate.enableValidation();
 
 function openModalWindow(modalWindow) {
   document.addEventListener('keydown', closeOnKeydownEscape);
@@ -36,14 +46,14 @@ function closeModalWindow(modalWindow) {
 }
 
 buttonEditProfileOpen.addEventListener('click', () => {
-  cleanInputs(popupEditProfile, validationConfig);
   nameInput.value = formName.textContent;
   activityInput.value = formActivity.textContent;
-  enableSubmitButton(popupEditProfile, validationConfig);
+  profileFormValidate.enableSubmitButton();
   openModalWindow(popupEditProfile);
 });
 
 buttonEditProfileClose.addEventListener('click', () => {
+  profileFormValidate.cleanInputs();
   closeModalWindow(popupEditProfile);
 })
 
@@ -56,55 +66,30 @@ function changeText(evt) {
 
 formProfile.addEventListener('submit', changeText);
 
-function deleteCard(evt) {
-  const element = evt.target.closest('.places__card');
-  element.remove();
-}
+initialCards.forEach(item => {
+  const card = new Card(item.name, item.link, '#cards-template');
+  const cardElement = card.generateCard();
 
-function likeCard(evt) {
-  evt.target.classList.toggle('active');
-};
-
-function openPopupImage(evt) {
-  const element = evt.target.closest('.places__card');
-  modalImage.src = element.querySelector('.places__image').src;
-  modalImage.alt = element.querySelector('.places__title').textContent;
-  modalText.textContent = element.querySelector('.places__title').textContent;
-  openModalWindow(popupImage);
-}
-
-function renderCard(link, name) {
-  const cardElement = cardTemplate.querySelector('.places__card').cloneNode(true);
-  const cardImage = cardElement.querySelector('.places__image');
-  cardImage.src = link;
-  cardImage.alt = name;
-  cardElement.querySelector('.places__title').textContent = name;
-  cardElement.querySelector('.places__button_type_like').addEventListener('click', likeCard);
-  cardElement.querySelector('.places__button_type_trash').addEventListener('click', deleteCard);
-  cardImage.addEventListener('click', openPopupImage);
-  return cardElement;
-}
-
-function showCards(element) {
-  const cardElement = renderCard(element.link, element.name);
   cardsList.append(cardElement);
-}
+})
 
 function addCard(evt) {
   evt.preventDefault();
-  const cardElement = renderCard(linkInput.value, titleInput.value);
+
+  const card = new Card(titleInput.value, linkInput.value, '#cards-template')
+  const cardElement = card.generateCard();
+
   cardsList.prepend(cardElement);
   closeModalWindow(popupAddCard);
 }
 
 formCard.addEventListener('submit', addCard);
 
-initialCards.forEach(showCards);
-
 buttonImageClose.addEventListener('click', () => closeModalWindow(popupImage));
 
 buttonAddCardOpen.addEventListener('click', () => {
-  cleanInputs(popupAddCard, validationConfig);
+  cardFormValidate.cleanInputs();
+  cardFormValidate.enableSubmitButton();
   openModalWindow(popupAddCard);
 });
 
@@ -125,3 +110,6 @@ const closeOnKeydownEscape = evt => {
     closeModalWindow(modalWindow);
   };
 };
+
+
+export { modalImage, modalText, popupImage, openModalWindow };
