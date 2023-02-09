@@ -1,4 +1,5 @@
-import { modalImage, modalText, popupImage, openModalWindow } from "./index.js";
+import { modalImage, modalText, popupImage} from "./utils/constants.js";
+import { openModalWindow } from "./utils/utils.js";
 
 export class Card {
   constructor(name, link, templateSelector) {

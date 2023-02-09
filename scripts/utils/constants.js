@@ -34,4 +34,8 @@ const initialCards = [
   }
 ];
 
-export { validationConfig, initialCards };
+const popupImage = document.querySelector('.popup_type_card');
+const modalImage = popupImage.querySelector('.popup__image');
+const modalText = popupImage.querySelector('.popup__description');
+
+export { validationConfig, initialCards, popupImage, modalImage, modalText };
