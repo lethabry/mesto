@@ -1,11 +1,9 @@
-import { modalImage, modalText, popupImage} from "./utils/constants.js";
-import { openModalWindow } from "./utils/utils.js";
-
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _like() {
@@ -17,13 +15,6 @@ export class Card {
 
   _delete() {
     this._element.remove();
-  }
-
-  _openPopup() {
-    modalImage.src = this._link;
-    modalImage.alt = this._name;
-    modalText.textContent = this._name;
-    openModalWindow(popupImage);
   }
 
   _getTemplate() {
@@ -49,9 +40,9 @@ export class Card {
         this._delete();
       });
 
-    image.addEventListener('click', () => {
-      this._openPopup();
-    });
+    image.addEventListener('click', ()=>{
+      this._handleCardClick();
+    })
   }
 
   generateCard() {
