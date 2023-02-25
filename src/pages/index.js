@@ -4,18 +4,15 @@ import {
   validationConfig,
   initialCards,
   buttonEditProfileOpen,
-  buttonEditProfileClose,
   formProfile,
   nameInput,
   activityInput,
   cardTemplateSelector,
   cardListSelector,
   buttonAddCardOpen,
-  buttonAddCardClose,
   formCard,
   titleInput,
-  linkInput,
-  buttonImageClose
+  linkInput
 } from "../components/utils/constants.js";
 
 import { Card } from "../components/Card.js";
@@ -48,21 +45,17 @@ cardsList.renderItems();
 popupProfile.setEventListeners();
 popupCard.setEventListeners();
 popupOpenImage.setEventListeners();
-// Set EventListeners for formValidation
+// Set EventListeners for formValidate
 profileFormValidate.enableValidation();
 cardFormValidate.enableValidation();
 
 buttonEditProfileOpen.addEventListener('click', () => {
+  profileFormValidate.cleanInputs();
   const { name, activity } = profileInfo.getUserInfo();
   [nameInput.value, activityInput.value] = [name, activity];
   profileFormValidate.enableSubmitButton();
   popupProfile.open();
 });
-
-buttonEditProfileClose.addEventListener('click', () => {
-  profileFormValidate.cleanInputs();
-  popupProfile.close();
-})
 
 function changeUserData() {
   profileInfo.setUserInfo(nameInput.value, activityInput.value);
@@ -75,12 +68,8 @@ function createCard() {
   cardsList.addItemUp(cardElement);
 }
 
-buttonImageClose.addEventListener('click', () => popupOpenImage.close());
-
 buttonAddCardOpen.addEventListener('click', () => {
   cardFormValidate.cleanInputs();
   cardFormValidate.enableSubmitButton();
   popupCard.open();
 });
-
-buttonAddCardClose.addEventListener('click', () => popupCard.close());
