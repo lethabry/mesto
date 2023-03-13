@@ -25,7 +25,7 @@ const titleInput = formCard.querySelector('.popup__input_type_name');
 const linkInput = formCard.querySelector('.popup__input_type_activity');
 // change Avatar
 const buttonChangeAvatar = document.querySelector('.profile__button_type_avatar');
-const popupChangeAvatar = document.querySelector('.popup_type_change_avatar');
+const popupChangeAvatar = document.querySelector('.popup_type_avatar');
 const formAvatar = popupChangeAvatar.querySelector('.popup__form');
 const avatarLink = formAvatar.querySelector('.popup__input');
 const avatarImage = document.querySelector('.profile__avatar');

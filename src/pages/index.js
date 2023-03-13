@@ -35,11 +35,11 @@ const avatarFormValidate = new FormValidator(formAvatar, validationConfig);
 const popupOpenImage = new PopupWithImage('.popup_type_card');
 const popupProfile = new PopupWithForm('.popup_type_edit', changeUserData);
 const popupCard = new PopupWithForm('.popup_type_add', createCard);
-const popupAvatar = new PopupWithForm('.popup_type_change_avatar', changeUserAvatar);
+const popupAvatar = new PopupWithForm('.popup_type_avatar', changeUserAvatar);
 // create instance of class UserInfo
 const profileInfo = new UserInfo({ userNameSelector: '.profile__title', userActivitSelector: '.profile__subtitle' });
 // create instance of class PopupWithConfirm
-const popupConfirmDelete = new PopupWithConfirm('.popup_type_delete_card', deleteCard);
+const popupConfirmDelete = new PopupWithConfirm('.popup_type_delete', deleteCard);
 
 let userId;
 // create instance of class Section
