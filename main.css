@@ -6,9 +6,11 @@
 .header__logo{margin:45px 0 41px}@media screen and (max-width:918px){.header__logo{margin-left:27px}}@media screen and (max-width:450px){.header__logo{margin-bottom:31.6px;margin-top:28px}}@media screen and (max-width:358px){.header__logo{width:calc(100% - 216px)}}
 .profile{align-items:center;display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;margin:40px auto 0;max-width:880px}@media screen and (max-width:918px){.profile{padding:0 19px}}
 .profile__table{align-items:center;-moz-column-gap:30px;column-gap:30px;display:flex;flex-wrap:wrap;justify-content:center}@media screen and (max-width:735px){.profile__table{gap:27px;margin:0 auto}}@media screen and (max-width:436px){.profile__table{flex-direction:column}}
+.profile__images{position:relative}.profile__images:hover .profile__button_type_avatar{opacity:1}.profile__images:hover .profile__avatar{opacity:.2;transition:opacity .5s linear}
 .profile__info{position:relative}@media screen and (max-width:735px){.profile__info{align-self:center;display:flex;flex-direction:column}}
 .profile__string{align-items:center;display:flex;gap:18px;justify-content:space-evenly}@media screen and (max-width:440px){.profile__string{gap:13px}}
-.profile__avatar{border-radius:50%;height:120px;width:120px}
+.profile__avatar{border-radius:50%;height:120px;-o-object-fit:cover;object-fit:cover;transition:opacity .5s linear;width:120px}
+.profile__button_type_avatar{background:url(a086f758840ae814ecde.svg) no-repeat;background-color:transparent;background-size:contain;border:none;cursor:pointer;height:26px;left:50%;opacity:0;position:absolute;top:50%;transform:translate(-50%,-50%);transition:opacity .5s linear;width:26px}
 .profile__title{font-size:42px;font-style:normal;font-weight:500;line-height:1.14;margin:0 0 11px;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:539px){.profile__title{font-size:27px;line-height:33px;margin-bottom:8px;margin-left:27px;text-align:center}}@media screen and (max-width:400px){.profile__title{max-width:190px}}
 .profile__subtitle{font-size:18px;font-style:normal;font-weight:400;line-height:22px;margin:0;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:539px){.profile__subtitle{font-size:14px;line-height:17px;text-align:center}}@media screen and (max-width:400px){.profile__subtitle{max-width:282px}}
 .profile__button_type_edit{background:url(83ecd1ca84b74dc9b512.png) #000;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;height:24px;width:24px}@media screen and (max-width:576px){.profile__button_type_edit{height:18px;width:18px}}
@@ -16,10 +18,12 @@
 .places{margin:51px auto 0;max-width:880px}@media screen and (max-width:918px){.places{padding:0 19px}}@media screen and (max-width:539px){.places{margin-top:34px}}
 .places__cards{-moz-column-gap:17px;column-gap:17px;display:grid;grid-template-columns:repeat(auto-fit,minmax(282px,1fr));justify-items:center;list-style:none;margin:0;padding:0;row-gap:22px}
 .places__card{display:flex;flex-direction:column;max-width:282px;position:relative}
-.places__image{aspect-ratio:1/1;border-radius:10px 10px 0 0;cursor:pointer;-o-object-fit:cover;object-fit:cover;width:100%}
+.places__image{aspect-ratio:1/1;border-radius:10px 10px 0 0;cursor:pointer;min-width:282px;-o-object-fit:cover;object-fit:cover;width:100%}
 .places__name{align-items:center;background-color:#fff;border-radius:0 0 10px 10px;display:flex;justify-content:space-between;min-height:78px;padding:0 21px}
 .places__title{color:#000;font-size:24px;font-style:normal;font-weight:900;line-height:29px;margin:0;max-width:185px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .places__button_type_like{background:url(1ad06e85f169668a1f36.svg) #fff no-repeat;border:none;cursor:pointer;height:19px;width:22px}
+.places__counter{color:#000;display:none;font-size:13px;font-style:normal;font-weight:400;height:13px;line-height:16px;margin:3px 0 0;text-align:center}
+.places__counter_active{display:block}
 .places__button_type_trash{background:url(cbc09a894bdd4c956365.svg) transparent;border:none;cursor:pointer;height:19.3px;padding:0;position:absolute;right:20px;top:20px;width:18px}
 .places__button:hover{opacity:.5;transition:opacity .5s linear}
 .active{background:url(e787eeb70bb65b7b453a.svg)}
