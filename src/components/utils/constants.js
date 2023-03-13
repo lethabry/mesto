@@ -7,33 +7,6 @@ const validationConfig = {
   errorClass: 'popup__error_active'
 };
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 // Profile
 const buttonEditProfileOpen = document.querySelector('.profile__button_type_edit');
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -50,10 +23,15 @@ const popupAddCard = document.querySelector('.popup_type_add');
 const formCard = popupAddCard.querySelector('.popup__form');
 const titleInput = formCard.querySelector('.popup__input_type_name');
 const linkInput = formCard.querySelector('.popup__input_type_activity');
+// change Avatar
+const buttonChangeAvatar = document.querySelector('.profile__button_type_avatar');
+const popupChangeAvatar = document.querySelector('.popup_type_change_avatar');
+const formAvatar = popupChangeAvatar.querySelector('.popup__form');
+const avatarLink = formAvatar.querySelector('.popup__input');
+const avatarImage = document.querySelector('.profile__avatar');
 
 export {
   validationConfig,
-  initialCards,
   buttonEditProfileOpen,
   formProfile,
   nameInput,
@@ -63,4 +41,9 @@ export {
   buttonAddCardOpen,
   formCard,
   titleInput,
-  linkInput};
+  linkInput,
+  buttonChangeAvatar,
+  formAvatar,
+  avatarLink,
+  avatarImage
+};
