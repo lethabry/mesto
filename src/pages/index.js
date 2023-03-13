@@ -14,8 +14,7 @@ import {
   linkInput,
   buttonChangeAvatar,
   formAvatar,
-  avatarLink,
-  avatarImage
+  avatarLink
 } from "../components/utils/constants.js";
 
 import { Card } from "../components/Card.js";
@@ -37,7 +36,7 @@ const popupProfile = new PopupWithForm('.popup_type_edit', changeUserData);
 const popupCard = new PopupWithForm('.popup_type_add', createCard);
 const popupAvatar = new PopupWithForm('.popup_type_avatar', changeUserAvatar);
 // create instance of class UserInfo
-const profileInfo = new UserInfo({ userNameSelector: '.profile__title', userActivitSelector: '.profile__subtitle' });
+const profileInfo = new UserInfo({ userNameSelector: '.profile__title', userActivitSelector: '.profile__subtitle', userAvatarSelector: '.profile__avatar' });
 // create instance of class PopupWithConfirm
 const popupConfirmDelete = new PopupWithConfirm('.popup_type_delete', deleteCard);
 
@@ -74,39 +73,43 @@ Promise.all([api.getCards(), api.getCurrentUser()])
     userId = userData._id;
     cardsList.renderItems(cards);
     profileInfo.setUserInfo(userData.name, userData.about);
-    avatarImage.src = userData.avatar;
+    profileInfo.setUserAvatar(userData.avatar);
   })
   .catch(err => console.log(`Error: ${err.status}`))
 
-buttonChangeAvatar.addEventListener('click', () => {
+buttonChangeAvatar.addEventListener('click', openPopupAvatar)
+buttonEditProfileOpen.addEventListener('click', openPopupEditProfile);
+buttonAddCardOpen.addEventListener('click', openPopupAddCard);
+
+function openPopupAvatar(){
   avatarFormValidate.cleanInputs();
   avatarFormValidate.enableSubmitButton();
   popupAvatar.open();
-})
+}
 
-buttonEditProfileOpen.addEventListener('click', () => {
+function openPopupEditProfile(){
   profileFormValidate.cleanInputs();
   const { name, activity } = profileInfo.getUserInfo();
   [nameInput.value, activityInput.value] = [name, activity];
   profileFormValidate.enableSubmitButton();
   popupProfile.open();
-});
+}
 
-buttonAddCardOpen.addEventListener('click', () => {
+function openPopupAddCard(){
   cardFormValidate.cleanInputs();
   cardFormValidate.enableSubmitButton();
   popupCard.open();
-});
+}
 
 function changeUserData() {
   popupProfile.renderLoading(true);
   api.changeUserData(nameInput.value, activityInput.value)
-    .then(userData => profileInfo.setUserInfo(userData.name, userData.about))
-    .catch(err => console.log(`Error: ${err.status}`))
-    .finally(() => {
-      popupProfile.renderLoading(false);
+    .then(userData => {
+      profileInfo.setUserInfo(userData.name, userData.about);
       popupProfile.close();
-    });
+    })
+    .catch(err => console.log(`Error: ${err.status}`))
+    .finally(() => popupProfile.renderLoading(false));
 }
 
 function createCard() {
@@ -123,7 +126,10 @@ function createCard() {
 
 function deleteCard(data, card) {
   api.deleteCard(data)
-    .then(data => card.delete(data))
+    .then(data => {
+      card.delete(data);
+      popupConfirmDelete.close();
+    })
     .catch(err => console.log(`Error: ${err.status}`));
 }
 
@@ -143,10 +149,10 @@ function handleButtonLike(data, card) {
 function changeUserAvatar() {
   popupAvatar.renderLoading(true);
   api.changeAvatar(avatarLink.value)
-    .then(data => avatarImage.src = data.avatar)
-    .catch(err => console.log(`Error: ${err.status}`))
-    .finally(() => {
-      popupAvatar.renderLoading(false);
+    .then(data => {
+      profileInfo.setUserAvatar(data.avatar);
       popupAvatar.close();
-    });
+    })
+    .catch(err => console.log(`Error: ${err.status}`))
+    .finally(() => popupAvatar.renderLoading(false));
 }

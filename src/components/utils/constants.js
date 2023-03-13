@@ -28,7 +28,6 @@ const buttonChangeAvatar = document.querySelector('.profile__button_type_avatar'
 const popupChangeAvatar = document.querySelector('.popup_type_avatar');
 const formAvatar = popupChangeAvatar.querySelector('.popup__form');
 const avatarLink = formAvatar.querySelector('.popup__input');
-const avatarImage = document.querySelector('.profile__avatar');
 
 export {
   validationConfig,
@@ -44,6 +43,5 @@ export {
   linkInput,
   buttonChangeAvatar,
   formAvatar,
-  avatarLink,
-  avatarImage
+  avatarLink
 };
